@@ -40,6 +40,14 @@ public class ProjectMemberService {
         }
 
     }*/
+    public Iterable<User> findAllUsers(){
+        return userRepository.findAll();
+    }
+    public User findUserByusername(String name)
+    {
+    	return userRepository.findUserByuserName(name);
+    }
+    
     public void saveUser(User user)
     {  	
 

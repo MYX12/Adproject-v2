@@ -1,5 +1,6 @@
 package nus.team1.adproject.ppmtool.web;
 
+import nus.team1.adproject.ppmtool.domain.Project;
 import nus.team1.adproject.ppmtool.domain.ProjectTask;
 import nus.team1.adproject.ppmtool.domain.User;
 import nus.team1.adproject.ppmtool.services.MapValidationErrorService;
@@ -41,11 +42,21 @@ public class MemberController {
 		return new ResponseEntity<User>(user,HttpStatus.CREATED);
     }
     
+    @GetMapping("/user/{username}")
+    public User findUserByname(@PathVariable String username){
+    	
+    	return pmService.findUserByusername(username);
+    }
 
     @GetMapping("/{project_id}")
     public Iterable<User> getAllMember(@PathVariable String project_id){
     	
     	return pmService.findMemberByProjectId(project_id);
+
+    }
+    @GetMapping("/all")
+    public Iterable<User> getAllUsers(){
+        return pmService.findAllUsers();
 
     }
 

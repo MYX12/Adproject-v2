@@ -1,9 +1,33 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import HelloWorldService from "../actions/RecommendService";
-
+import MemberService from "../actions/MemberService";
+import AuthenticationService from "./UserManagement/AuthenticationService";
 
 class Profile extends Component {
+  constructor(props)
+  {
+    super(props);
+    this.state={
+      user:[]
+    };
+    this.refreshUsers=this.refreshUsers.bind(this);
+
+  }
+
+  componentDidMount()
+  {
+    this.refreshUsers();
+  }
+  refreshUsers()
+  {
+    let username=AuthenticationService.getLoggedInUserName();
+    MemberService.retriveUserByName(username).
+    then((Response)=>
+    {
+      this.setState({user:Response.data});
+    });
+
+  }
 
   render() {
       return (
@@ -15,28 +39,31 @@ class Profile extends Component {
                 image
             </div>
             <div className="user-name">
-                username
+                {this.state.user.userName}
             </div>
           </div>
           <div className="container-right">
           <form >
               <div className="center">
                   <div className="form-group">
+                    username:
                     <input
                       type="text"
-                      placeholder="Name"
+                      value={this.state.user.userName}
                     />
                   </div>
                   <div className="form-group">
+                    email:
                     <input
                       type="text"
-                      placeholder="Email"
+                      value={this.state.user.email}
                     />
                   </div>
                   <div className="form-group">
+                    password:
                     <input
                       type="text"
-                      placeholder="Password"
+                      value={this.state.user.password}
                     />
                   </div>
                 </div>

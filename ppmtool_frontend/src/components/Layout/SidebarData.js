@@ -22,22 +22,5 @@ export const SidebarData=[
         icon:<IoIcons.IoIosPaper/>,
         cName:'nav-text'
     },
-    {
-        title:'Profile',
-        path:'/profile',
-        icon:<IoIcons.IoMdPeople/>,
-        cName:'nav-text'
-    },
-    {
-        title:'Message',
-        path:'/message',
-        icon:<FaIcons.FaEnvelopeOpenText/>,
-        cName:'nav-text'
-    },
-    {
-        title:'sign up',
-        path:'/register',
-        icon:<IoIcons.IoMdHelpCircle/>,
-        cName:'nav-text'
-    },
+
 ]

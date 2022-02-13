@@ -25,6 +25,14 @@ export const getMembers = id => async dispatch => {
   });
 };
 
+export const getAllUsers = () => async dispatch => {
+  const res = await axios.get("/api/memebr/all");
+  dispatch({
+    type: GET_MEMBER,
+    payload: res.data
+  });
+};
+
 // export const getProject = (id, history) => async dispatch => {
 //   const res = await axios.get(`api/project/${id}`);
 //   dispatch({

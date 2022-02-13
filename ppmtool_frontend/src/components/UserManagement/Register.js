@@ -3,7 +3,7 @@ import { createNewUser } from "../../actions/sercurityActions";
 import PropTypes from "prop-types"
 import { connect } from "react-redux";
 import classnames from "classnames";
-
+import { Link } from 'react-router-dom';
 class Register extends Component {
     constructor() {
         super();
@@ -110,6 +110,9 @@ class Register extends Component {
                                 </div>
                                 <input type="submit" className="btn btn-info btn-block mt-4" />
                             </form>
+                            <div>Already have an account?
+                                <Link to='login'>login</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
