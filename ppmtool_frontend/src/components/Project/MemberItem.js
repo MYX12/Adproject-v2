@@ -2,8 +2,14 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { removeMember } from "../../actions/MemberActions";
 
 class MemberItem extends Component {
+
+    onDeleteClick = id => {
+      this.props.removeMember(id);
+    };
+  
 
   render() {
     const { member } = this.props;
@@ -12,43 +18,27 @@ class MemberItem extends Component {
         <div className="card card-body bg-light mb-3">
           <div className="row">
             <div className="col-2">
-              <span className="mx-auto">{project.projectIdentifier}</span>
+              <span className="mx-auto">{member.userName}</span>
             </div>
             <div className="col-lg-6 col-md-4 col-8">
-              <h3>{project.projectName}</h3>
-              <p>{project.description}</p>
+              <h3>{member.contact}</h3>
+              <p>{member.email}</p>
             </div>
             <div className="col-md-4 d-none d-lg-block">
               <ul className="list-group">
-              <Link to={`/projectBoard/${project.projectIdentifier}`}>
+              <Link to={`/trasferProject/${member.projectIdentifier}/${member.userName}`}>
                   <li className="list-group-item board">
-                    <i className="fa fa-flag-checkered pr-1"> Project Board </i>
+                    <i className="fa fa-flag-checkered pr-1"> Transfer Project to this member </i>
                   </li>
                   </Link>
-                <Link to={`/updateProject/${project.projectIdentifier}`}>
-                  <li className="list-group-item update">
-                    <i className="fa fa-edit pr-1"> Update Project Info</i>
-                  </li>
-                  </Link>
-                  <Link to={'/Team'}>
-                  <li className="list-group-item update">
-                    <i className="fas fa-edit">
-                      {" "}
-                      <span STYLE="font-family: 'Arial Light'">
-                        {" "}
-                        View Team Members{" "}
-                      </span>
-                    </i>
-                  </li>
-                </Link>
                   <li
                   className="list-group-item delete"
                   onClick={this.onDeleteClick.bind(
                     this,
-                    project.projectIdentifier
+                    member.userName
                   )}
                 >
-                  <i className="fa fa-minus-circle pr-1"> Delete Project</i>
+                  <i className="fa fa-minus-circle pr-1"> Remove Member</i>
                 </li>
               </ul>
             </div>
@@ -59,11 +49,11 @@ class MemberItem extends Component {
   }
 }
 
-ProjectItem.propTypes = {
-  deleteProject: PropTypes.func.isRequired
+MemberItem.propTypes = {
+  removeMember: PropTypes.func.isRequired
 };
 
 export default connect(
   null,
-  { deleteProject }
-)(ProjectItem);
+  { removeMember }
+)(MemberItem);

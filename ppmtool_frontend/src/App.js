@@ -18,7 +18,8 @@ import Profile from "./components/Profile";
 import Register from "./components/UserManagement/Register";
 import Login from "./components/UserManagement/Login";
 import AuthenticatedRouter from "./components/UserManagement/AuthenticatedRoute";
-
+import Member from "./components/Member";
+import AddMember from "./components/Member/AddMember";
 class App extends Component {
   render(){
   return (
@@ -33,7 +34,8 @@ class App extends Component {
         <AuthenticatedRouter exact path="/dashboard" component={Dashboard} />
         <Route exact path="/recommendation" component={RecommenComponent} />
         <Route exact path="/addProject" component={AddProject} />
-        <Route exact path="/team/:id" component={Team} />
+        <Route exact path="/members/:id" component={Member} />
+        <Route exact path="/members/:id/addMember" component={AddMember} />
         <Route exact path="/updateProject/:id" component={UpdateProject} />
         <Route exact path="/projectBoard/:id" component={ProjectBoard} />
         <Route exact path="/profile/:name" component={Profile} />

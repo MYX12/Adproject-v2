@@ -34,13 +34,13 @@ class ProjectItem extends Component {
                     <i className="fa fa-edit pr-1"> Update Project Info</i>
                   </li>
                   </Link>
-                  <Link to={`/Team/${project.projectIdentifier}`}>
+                  <Link to={`/Members/${project.projectIdentifier}`}>
                   <li className="list-group-item update">
                     <i className="fas fa-edit">
                       {" "}
                       <span STYLE="font-family: 'Arial Light'">
                         {" "}
-                        View Team Members{" "}
+                        Manage Team Members{" "}
                       </span>
                     </i>
                   </li>

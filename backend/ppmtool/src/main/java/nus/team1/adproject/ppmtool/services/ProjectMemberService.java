@@ -74,6 +74,23 @@ public class ProjectMemberService {
 //        }
 //
 //    }
+    public User addProjectMember(String projectIdentifier, String username) {
+
+        //Exceptions: Project not found
+
+        try {
+            //PTs to be added to a specific project, project != null, BL exists
+            Project project = projectRepository.findByProjectIdentifier(projectIdentifier);
+            //set the project to member
+            System.out.println(project);
+            User member=userRepository.findUserByuserName(username);
+            member.setProjectIdentifier(projectIdentifier);
+            return userRepository.save(member);
+        } catch (Exception e) {
+            throw new ProjectNotFoundException("Project not Found");
+        }
+
+    }
     
     
     public Iterable<User> findMemberByProjectId(String id) {
@@ -122,5 +139,10 @@ public class ProjectMemberService {
     public void deletePTByProjectIdName(String project_id, String user_name) {
     	User member=findMemberByProjectIdName(project_id, user_name);
         userRepository.delete(member);
+    }
+    public void RemoveMember(String user_name) {
+    	User member=userRepository.findUserByuserName(user_name);
+    	member.setProjectIdentifier(null);
+    	userRepository.save(member);
     }
 }

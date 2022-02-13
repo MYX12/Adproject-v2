@@ -1,5 +1,6 @@
 import axios from "axios";
-import {GET_MEMBER} from "./types";
+import {GET_MEMBER,REMOVE_MEMBER,GET_ERRORS} from "./types";
+import MemberService from "./MemberService";
 
 // export const createProject = (project, history) => async dispatch => {
 //   try {
@@ -31,6 +32,31 @@ export const getAllUsers = () => async dispatch => {
     type: GET_MEMBER,
     payload: res.data
   });
+};
+
+export const removeMember = userName => async dispatch => {
+  if (
+    window.confirm(
+      "Are you sure? This will remove the member from this project"
+    )
+  ) {
+    MemberService.removeMembers(userName);
+  }
+};
+
+export const addMembers = (id,userName )=> async dispatch => {
+  try {
+        await axios.post(`/api/member/${id}/${userName}`);
+        dispatch({
+          type: GET_ERRORS,
+          payload: {}
+        });
+      } catch (err) {
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data
+        });
+      }
 };
 
 // export const getProject = (id, history) => async dispatch => {

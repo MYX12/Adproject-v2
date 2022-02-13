@@ -35,6 +35,13 @@ public class MemberController {
 //        return new ResponseEntity<User>(newmember, HttpStatus.CREATED);
 //
 //    }
+    @PostMapping("/{project_id}/{user_name}")
+    public ResponseEntity<?> addMembertoProject(@PathVariable String project_id,@PathVariable String user_name){
+
+        User newmember=pmService.addProjectMember(project_id, user_name);
+        return new ResponseEntity<User>(newmember, HttpStatus.CREATED);
+
+    }
     @RequestMapping(value="/register",method = RequestMethod.POST)
     public ResponseEntity<?> saveUser(@Valid @RequestBody User user)
     {
@@ -87,4 +94,11 @@ public class MemberController {
         return new ResponseEntity<String>("Member "+user_name+" was deleted successfully", HttpStatus.OK);
     }
 
+    @PostMapping("/{user_name}/remove")
+    public ResponseEntity<?> removeMember(@PathVariable String user_name){
+
+     pmService.RemoveMember(user_name);
+     return new ResponseEntity<String>("Member "+user_name+" was removed successfully", HttpStatus.OK);
+
+    }
 }
