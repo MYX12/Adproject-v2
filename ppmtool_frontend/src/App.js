@@ -20,6 +20,7 @@ import Login from "./components/UserManagement/Login";
 import AuthenticatedRouter from "./components/UserManagement/AuthenticatedRoute";
 import Member from "./components/Member";
 import AddMember from "./components/Member/AddMember";
+
 class App extends Component {
   render(){
   return (
@@ -30,6 +31,7 @@ class App extends Component {
         <Navbar/>
         <Route exact path="/register" component={Register}/>
         <Route exact path="/login" component={Login}/>
+
 
         <AuthenticatedRouter exact path="/dashboard" component={Dashboard} />
         <Route exact path="/recommendation" component={RecommenComponent} />

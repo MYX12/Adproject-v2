@@ -23,13 +23,13 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+	@NotBlank(message = "User name is required")
 	private String userName;
-	
+	 @NotBlank(message = "Password is required")
 	private String password;
-	
+	 @NotBlank(message = "Email is required")
 	private String email;
-	
+	 @NotBlank(message = "Contact is required")
 	private String contact;
 	@Column
 	private String designation;

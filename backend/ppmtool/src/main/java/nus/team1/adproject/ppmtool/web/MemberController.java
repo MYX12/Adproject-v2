@@ -43,11 +43,14 @@ public class MemberController {
 
     }
     @RequestMapping(value="/register",method = RequestMethod.POST)
-    public ResponseEntity<?> saveUser(@Valid @RequestBody User user)
+    public ResponseEntity<?> saveUser(@Valid @RequestBody User user, BindingResult result)
     {
+    	ResponseEntity<?> errorMap=mapValidationErrorService.MapValidationService(result);
+    	if(errorMap!=null) return errorMap;
     	pmService.saveUser(user);
 		return new ResponseEntity<User>(user,HttpStatus.CREATED);
     }
+    
     
     @GetMapping("/user/{username}")
     public User findUserByname(@PathVariable String username){
