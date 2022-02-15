@@ -51,12 +51,23 @@ public class MemberController {
 		return new ResponseEntity<User>(user,HttpStatus.CREATED);
     }
     
+    //changes!!!!
+    @RequestMapping(value="/edit",method = RequestMethod.PATCH)
+    public ResponseEntity<?> updateUser(@Valid @RequestBody User user, BindingResult result)
+    {
+    	ResponseEntity<?> errorMap=mapValidationErrorService.MapValidationService(result);
+    	if(errorMap!=null) return errorMap;
+    	pmService.saveUser(user);
+		return new ResponseEntity<User>(user,HttpStatus.CREATED);
+    }
+    
     
     @GetMapping("/user/{username}")
     public User findUserByname(@PathVariable String username){
     	
     	return pmService.findUserByusername(username);
     }
+    
 
     @GetMapping("/{project_id}")
     public Iterable<User> getAllMember(@PathVariable String project_id){
@@ -64,6 +75,9 @@ public class MemberController {
     	return pmService.findMemberByProjectId(project_id);
 
     }
+    
+    
+    
     @GetMapping("/all")
     public Iterable<User> getAllUsers(){
         return pmService.findAllUsers();

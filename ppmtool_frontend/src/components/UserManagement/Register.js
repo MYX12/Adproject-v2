@@ -36,6 +36,7 @@ class Register extends Component {
             projectIdentifier: this.state.projectIdentifier,
         }
         this.props.createNewUser(newUser, this.props.history);
+        console.log(newUser)
     }
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });

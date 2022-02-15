@@ -145,4 +145,5 @@ public class ProjectMemberService {
     	member.setProjectIdentifier(null);
     	userRepository.save(member);
     }
+
 }

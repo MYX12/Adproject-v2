@@ -9,6 +9,7 @@ export const createNewUser = (newUser,history) =>async dispatch =>{
           type: GET_ERRORS,
           payload: {}
         });
+        
       } catch (err) {
         dispatch({
           type: GET_ERRORS,
@@ -18,7 +19,7 @@ export const createNewUser = (newUser,history) =>async dispatch =>{
 };
 export const updateUser = (User,history,username) =>async dispatch =>{
   try {
-      await axios.post("/api/member/register", User);
+      await axios.patch("/api/member/edit", User);
       history.push(`/profile/${username}`);
       dispatch({
         type: GET_ERRORS,
